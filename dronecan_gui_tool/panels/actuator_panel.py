@@ -46,7 +46,7 @@ class PercentSlider(QWidget):
         self._spinbox.setValue(0)
         self._spinbox.setDecimals(3)
         self._spinbox.setSingleStep(0.001)
-        self._spinbox.valueChanged.connect(lambda: self._slider.setValue(self._spinbox.value()*1000.0))
+        self._spinbox.valueChanged.connect(lambda: self._slider.setValue(int(self._spinbox.value()*1000.0)))
 
         self._zero_button = make_icon_button('fa6.hand', 'Zero setpoint', self, text = 'Zero', on_clicked=self.zero)
 
@@ -135,7 +135,7 @@ class ActuatorPanel(QDialog):
         self._bcast_interval.setSingleStep(0.01)
         self._bcast_interval.setValue(self.DEFAULT_INTERVAL)
         self._bcast_interval.valueChanged.connect(
-            lambda: self._bcast_timer.setInterval(self._bcast_interval.value() * 1e3))
+            lambda: self._bcast_timer.setInterval(int(self._bcast_interval.value() * 1e3)))
 
         self._stop_all = make_icon_button('fa6.hand', 'Zero all channels', self, text='Zero All',
                                           on_clicked=self._do_stop_all)

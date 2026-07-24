@@ -89,11 +89,7 @@ class HardpointsAndCircuitStatusPanel(QDialog):
 
         # Circuits setup
         self._circuit_rows = {}
-        circuit_names = {
-            1: 'Circuit 1 (5V)',
-            2: 'Circuit 2 (12V)',
-            3: 'Circuit 3 (48V)'
-        }
+        circuit_names = {i: f'Circuit {i}' for i in range(1, 11)}
 
         for idx, (cid, name) in enumerate(circuit_names.items(), start=1):
             lbl_name = QLabel(name, self)
@@ -136,7 +132,7 @@ class HardpointsAndCircuitStatusPanel(QDialog):
         layout.addWidget(self._msg_viewer)
 
         self.setLayout(layout)
-        self.resize(550, 450)
+        self.resize(550, 600)
 
         # Register DroneCAN handler for CircuitStatus
         self._handlers = [
